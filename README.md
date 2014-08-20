@@ -7,7 +7,7 @@ into heroku's build directory for deployment.
 
 The only change is fixing this bug to make the demo work out-of-the-box.
 
-This project is an example of how to use the [Heroku Common Lisp Buildpack](https://github.com/bbohrer/heroku-buildpack-cl).  See the buildpack repository for more information and credits.
+This project is an example of how to use the [Heroku Common Lisp Buildpack](https://github.com/mtravers/heroku-buildpack-cl).  See the buildpack repository for more information and credits.
 
 ## Instructions:
 First, get yourself set up with a [Heroku account and tools](http://devcenter.heroku.com/articles/quickstart).
