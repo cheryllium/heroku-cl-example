@@ -15,8 +15,6 @@
 
 
 
-(publish :path "/"
-	 :function (base-page "hello world"))
 
 ;;; Called at application initialization time.
 (defun cl-user::initialize-application ()
@@ -24,6 +22,10 @@
   (publish-directory
    :prefix "/"
    :destination (namestring (truename "./public/")))
+
+  (publish :path "/"
+	   :function (base-page "hello world"))
+
   (wu:wuwei-initialize-application))
 
 
