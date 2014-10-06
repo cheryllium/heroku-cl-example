@@ -1,25 +1,18 @@
 (in-package :net.aserve)
 
+(defun base-page (body) 
+  #'(lambda (req ent) 
+      (with-http-response
+       (req ent) 
+       (with-http-body
+	(req ent)
+	(format "~a" 
+		body)))))
+
+
+
 (publish :path "/"
-	 :function #'(lambda (req ent)
-		       (with-http-response (req ent)
-			 (with-http-body (req ent)
-			   (html
-			     (:head 
-			      (:title "Hello Lisp on Heroku"))
-			     ((:body :style "font-family: 'Arial'")
-			      (:h1 "(Hello 'World)")
-			      "Congratulations, you are running Lisp on "
-			      ((:a :href "http://heroku.com") "Heroku") 
-			      "!!!"
-			      :p
-			      ((:a :href "/db-demo") "Database demo")
-			      :p
-			      "More details at "
-			      ((:a :href "https://github.com/mtravers/heroku-cl-example/blob/master/README.md") "the README on github")
-			      :p
-			      ((:img :src "lisp-glossy.jpg"))
-			      ))))))
+	 :function (base-page "hello world"))
 
 ;;; Called at application initialization time.
 (defun cl-user::initialize-application ()
