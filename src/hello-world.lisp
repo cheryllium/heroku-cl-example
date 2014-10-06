@@ -9,7 +9,7 @@
 	(format 
 	 (request-reply-stream req)
 	 "~a" 
-	 "test")))))
+	 body)))))
 
 
 
