@@ -1,5 +1,8 @@
 (in-package :net.aserve)
 
+(defparameter *header* "<h1>Header</h1>")
+(defparameter *footer* "<h1>Footer</h1>")
+
 (defun base-page (body) 
   #'(lambda (req ent) 
       (with-http-response
@@ -8,8 +11,7 @@
 	(req ent)
 	(format 
 	 (request-reply-stream req)
-	 "~a" 
-	 body)))))
+	 "~a~a~a" *header* body *footer*)))))
 
 
 
