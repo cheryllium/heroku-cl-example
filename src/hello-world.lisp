@@ -24,14 +24,20 @@
 (defun cl-user::initialize-application ()
   ;; This has to be done at app-init rather than app-build time, to point to right directory.
 
+
   ;; Publish static files. 
   (publish-directory
    :prefix "/"
    :destination (namestring (truename "./public/")))
 
-  ;; Publish the home page.
-  (publish :path "/"
-	   :function (base-page (file-string (namestring (truename "./templates/index.html")))))
+  ;; Publish web pages. 
+  (mapcar #'(lambda (page) 
+	      (publish :path (car page) 
+		       :function (base-page (file-string 
+					     (namestring (truename (cdr page))))))) 
+	  (list 
+	   (cons "/" "./templates/index.html")))
+
 
   (wu:wuwei-initialize-application))
 
