@@ -6,8 +6,10 @@
        (req ent) 
        (with-http-body
 	(req ent)
-	(format "~a" 
-		"test")))))
+	(format 
+	 (request-reply-stream req)
+	 "~a" 
+	 "test")))))
 
 
 
