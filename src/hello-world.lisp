@@ -6,8 +6,8 @@
        (req ent) 
        (with-http-body
 	(req ent)
-	(format "~@" 
-		body)))))
+	(format "~a" 
+		"test")))))
 
 
 
