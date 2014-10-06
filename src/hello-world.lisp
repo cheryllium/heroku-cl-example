@@ -13,18 +13,25 @@
 	 (request-reply-stream req)
 	 "~a~a~a" *header* body *footer*)))))
 
-
+(defun file-string (path)
+  (with-open-file (stream path)
+    (let ((data (make-string (file-length stream))))
+      (read-sequence data stream)
+      data)))
 
 
 ;;; Called at application initialization time.
 (defun cl-user::initialize-application ()
   ;; This has to be done at app-init rather than app-build time, to point to right directory.
+
+  ;; Publish static files. 
   (publish-directory
    :prefix "/"
    :destination (namestring (truename "./public/")))
 
+  ;; Publish the home page.
   (publish :path "/"
-	   :function (base-page "hello world"))
+	   :function (base-page (file-string (namestring (truename "./templates/index.html")))))
 
   (wu:wuwei-initialize-application))
 
